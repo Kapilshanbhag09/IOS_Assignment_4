@@ -16,6 +16,10 @@
 		2A0CE7E52812A11F009DDD5A /* Assignment4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CE7E42812A11F009DDD5A /* Assignment4Tests.swift */; };
 		2A0CE7EF2812A11F009DDD5A /* Assignment4UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CE7EE2812A11F009DDD5A /* Assignment4UITests.swift */; };
 		2A0CE7F12812A11F009DDD5A /* Assignment4UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CE7F02812A11F009DDD5A /* Assignment4UITestsLaunchTests.swift */; };
+		2A0CE7FF2812AF94009DDD5A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0CE7FD2812AF94009DDD5A /* GameViewController.swift */; };
+		2A0CE8002812AF94009DDD5A /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0CE7FE2812AF94009DDD5A /* GameViewController.xib */; };
+		2A10A66F28165F8300D56B26 /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10A66D28165F8300D56B26 /* ImagesCollectionViewCell.swift */; };
+		2A10A67028165F8300D56B26 /* ImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A10A66E28165F8300D56B26 /* ImagesCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		2A0CE7EA2812A11F009DDD5A /* Assignment4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assignment4UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A0CE7EE2812A11F009DDD5A /* Assignment4UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment4UITests.swift; sourceTree = "<group>"; };
 		2A0CE7F02812A11F009DDD5A /* Assignment4UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment4UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2A0CE7FD2812AF94009DDD5A /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		2A0CE7FE2812AF94009DDD5A /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		2A10A66D28165F8300D56B26 /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2A10A66E28165F8300D56B26 /* ImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +114,10 @@
 				2A0CE7D62812A11F009DDD5A /* Assets.xcassets */,
 				2A0CE7D82812A11F009DDD5A /* LaunchScreen.storyboard */,
 				2A0CE7DB2812A11F009DDD5A /* Info.plist */,
+				2A0CE7FD2812AF94009DDD5A /* GameViewController.swift */,
+				2A0CE7FE2812AF94009DDD5A /* GameViewController.xib */,
+				2A10A66D28165F8300D56B26 /* ImagesCollectionViewCell.swift */,
+				2A10A66E28165F8300D56B26 /* ImagesCollectionViewCell.xib */,
 			);
 			path = Assignment4;
 			sourceTree = "<group>";
@@ -231,6 +243,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A10A67028165F8300D56B26 /* ImagesCollectionViewCell.xib in Resources */,
+				2A0CE8002812AF94009DDD5A /* GameViewController.xib in Resources */,
 				2A0CE7DA2812A11F009DDD5A /* LaunchScreen.storyboard in Resources */,
 				2A0CE7D72812A11F009DDD5A /* Assets.xcassets in Resources */,
 				2A0CE7D52812A11D009DDD5A /* Main.storyboard in Resources */,
@@ -258,8 +272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A0CE7FF2812AF94009DDD5A /* GameViewController.swift in Sources */,
 				2A0CE7D22812A11D009DDD5A /* ViewController.swift in Sources */,
 				2A0CE7CE2812A11D009DDD5A /* AppDelegate.swift in Sources */,
+				2A10A66F28165F8300D56B26 /* ImagesCollectionViewCell.swift in Sources */,
 				2A0CE7D02812A11D009DDD5A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
