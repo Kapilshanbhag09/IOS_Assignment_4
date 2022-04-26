@@ -19,4 +19,9 @@ class ImagesCollectionViewCell: UICollectionViewCell {
         
     }
 
+    func setupCell(_ img: UIImage,width: CGFloat, height: CGFloat) {
+        collcellimage.frame.size = CGSize(width: width, height: height)
+        collcellimage.image = img
+        collcellimage.translatesAutoresizingMaskIntoConstraints = true
+    }
 }

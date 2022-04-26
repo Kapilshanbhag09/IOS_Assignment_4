@@ -120,10 +120,13 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         let heightvar=(view.frame.width/3.0)-10.0
         let widthvar=(view.frame.width/3.0)-7.0
 
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: widthvar, height: heightvar))
+        /*let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: widthvar, height: heightvar))
         let image=UIImage(named: imagesArr[indexPath.row])
         imageView.image=image
-        cell.collcellimage.image = imageView.image
+        cell.collcellimage.image = image*/
+        if let image = UIImage(named: imagesArr[indexPath.row]) {
+            cell.setupCell(image, width: widthvar, height: heightvar)
+        }
         return cell
     }
     
