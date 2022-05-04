@@ -14,8 +14,9 @@ class GameViewController: UIViewController {
 
     //var imageNames:[String]=["1","2","3","4","5","6","7","8","9"]
     @IBOutlet weak var gameCollView: UICollectionView!
-    var imagesArr:[String]=[]
-    var imagesOrder:[String]=[]
+    var imagesURLArr:[String]=[]
+    var imagesURLOrder:[String]=[]
+    var imagesOrderArr:[UIImage]=[]
     var visibilityArr:[Bool]=[]
     var imageDisplayNumber=0
     var correctScore=0
@@ -29,7 +30,13 @@ class GameViewController: UIViewController {
         
         
         title="Memorize the title"
-        displayImage.image=UIImage(named: imagesArr[imageDisplayNumber])
+      
+      
+            
+        displayImage.image=getImagefromURL(link: imagesURLArr[imageDisplayNumber],num:0)
+      
+        
+        //displayImage.image=UIImage(named: imagesURLArr[imageDisplayNumber])
         gameCollView.translatesAutoresizingMaskIntoConstraints=false
         gameCollView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0).isActive = true
         gameCollView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: 0).isActive = true
@@ -47,17 +54,34 @@ class GameViewController: UIViewController {
         while(count<9){
             let randomNumber=Int.random(in:0...8)
             var flag=0
-            for name in imagesOrder{
-                if(name == imagesArr[randomNumber]){
+            for name in imagesURLOrder{
+                if(name == imagesURLArr[randomNumber]){
                     flag=1
                 }
             }
             if(flag==0){
-                imagesOrder.append(imagesArr[randomNumber])
+                imagesURLOrder.append(imagesURLArr[randomNumber])
                 visibilityArr.append(false)
                 count=count+1
             }
         }
+        for i in 0..<9{
+            imagesOrderArr.append(UIImage())
+        }
+        for i in 0..<9{
+            print(i)
+            imagesOrderArr[i]=getImagefromURL(link: imagesURLOrder[i],num: i)
+        }
+    }
+    func getImagefromURL(link:String,num:Int)->UIImage{
+        let url = URL(string: link)
+        let data = try? Data(contentsOf: url!)
+        if let imageData = data {
+            let imaged = UIImage(data: imageData)!
+            print(num)
+            return imaged
+        }
+        return UIImage(named: "invisible")!
     }
     @objc func restartButtonClicked(){
         dismiss(animated: true)
@@ -87,12 +111,14 @@ extension GameViewController:UICollectionViewDelegate,UICollectionViewDataSource
             dismiss(animated: true)
         }
         else{
-            if(imagesArr[imageDisplayNumber]==imagesOrder[indexPath.row]){
+            if(imagesURLArr[imageDisplayNumber]==imagesURLOrder[indexPath.row]){
                 visibilityArr[indexPath.row] = true
                 gameCollView.reloadData()
                 imageDisplayNumber=imageDisplayNumber+1
-                displayImage.image = UIImage(named: imagesArr[imageDisplayNumber])
+                displayImage.image = getImagefromURL(link:imagesURLArr[imageDisplayNumber],num: 0)
+                //displayImage.image = imagesURLOrder[imageDisplayNumber]
                 correctScore=correctScore+1
+                gameCollView.reloadData()
             }
             attemptScore=attemptScore+1
             scoreLabel.text="Score : \(correctScore) / \(attemptScore)"
@@ -106,7 +132,7 @@ extension GameViewController:UICollectionViewDelegate,UICollectionViewDataSource
         return CGSize(width: (view.frame.width/3.0)-7.0, height: (view.frame.width/3.0)-10.0)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imagesArr.count
+        imagesURLArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -118,9 +144,9 @@ extension GameViewController:UICollectionViewDelegate,UICollectionViewDataSource
 
         let imageViewg = UIImageView(frame: CGRect(x: 0, y: 0, width: widthvar, height: heightvar))
         if(visibilityArr[indexPath.row]==true){
-        let imageg=UIImage(named: self.imagesOrder[indexPath.row])
-            imageViewg.image=imageg
-            cell.collcellimage.image = imageViewg.image
+            imageViewg.image=imagesOrderArr[indexPath.row]
+        cell.collcellimage.image = imageViewg.image
+            
         }
         else{
             let imageg=UIImage(named: "invisible")

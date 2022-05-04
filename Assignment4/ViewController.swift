@@ -11,6 +11,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var timeLabel:UILabel!
     @IBOutlet weak var replayButton:UIButton!
     var imagesArr:[String] = []
+    var imagesURLArr:[String]=[]
+    struct mStruct:Decodable{
+        var m:String
+    }
+    struct itemsStruct:Decodable{
+        var title:String
+        var link:String
+        var media:mStruct
+        var date_taken:String
+        var description:String
+        var published:String
+        var author:String
+        var tags:String
+    }
+    struct responseStruct:Decodable{
+        var title:String
+        var link:String
+        var description:String
+        var generator:String
+        var items:[itemsStruct]
+    }
+  
     var replayButtonClickedVar=false
     @IBOutlet weak var collView: UICollectionView!
     var imageNames:[String]=["1","2","3","4","5","6","7","8","9"]
@@ -24,7 +46,9 @@ class ViewController: UIViewController {
             setImageArr()
         // Do any additional setup after loading the view.
         title="Memorise the images"
-       runTimer()
+            setImagesFromAPIFfunc()
+            print(imagesURLArr)
+       //runTimer()
         replayButton.addTarget(self, action: #selector(replayButtonClicked), for: .touchUpInside)
             collView.translatesAutoresizingMaskIntoConstraints=false
             collView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0).isActive = true
@@ -57,7 +81,7 @@ class ViewController: UIViewController {
         }
         seconds -= 1     //This will decrement(count down)the seconds.
         //timerLabel.text = “\(seconds)” //This will update the label.
-        print(seconds)
+        //print(seconds)
         if(seconds/10>=1){
             timeLabel.text="0:\(seconds)"
         }
@@ -68,7 +92,7 @@ class ViewController: UIViewController {
             timer.invalidate()
             let GameVC=GameViewController()
             GameVC.modalPresentationStyle = .fullScreen
-            GameVC.imagesArr=self.imagesArr
+            GameVC.imagesURLArr=self.imagesURLArr
             present(GameVC, animated: true)
             
         }
@@ -100,6 +124,47 @@ class ViewController: UIViewController {
         }
         
     }
+    func setImagesFromAPIFfunc(){
+        let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&lang=en-us&nojsoncallback=1")!
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            
+            guard let data = data else { return }
+            let strdate=String(data: data, encoding: .utf8)
+        
+            do{
+                let response=try JSONDecoder().decode(responseStruct.self, from:Data(strdate!.utf8))
+                //print(tproduct[0])
+            DispatchQueue.main.async {
+                var imagesURLS:[String]=[]
+                for i in 0..<response.items.count{
+                    imagesURLS.append(response.items[i].media.m)
+                }
+                var count=0
+                while(count<9){
+                    let randomNum=Int.random(in: 0...imagesURLS.count-1)
+                    var flag=0;
+                    for name in self.imagesURLArr{
+                        if(name==imagesURLS[randomNum]){
+                            flag=1
+                        }
+                    }
+                    if(flag==0){
+                        self.imagesURLArr.append(imagesURLS[randomNum])
+                        count=count+1
+                    }
+                    
+                }
+                self.collView.reloadData()
+                self.runTimer()
+                 }
+            }
+            catch{
+                print(error)
+            }
+            
+        }
+        task.resume()
+    }
     //--------------
 
 
@@ -110,7 +175,7 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageNames.count
+        return imagesURLArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -124,8 +189,12 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         let image=UIImage(named: imagesArr[indexPath.row])
         imageView.image=image
         cell.collcellimage.image = image*/
-        if let image = UIImage(named: imagesArr[indexPath.row]) {
-            cell.setupCell(image, width: widthvar, height: heightvar)
+        let url = URL(string: imagesURLArr[indexPath.row])
+        let data = try? Data(contentsOf: url!)
+
+        if let imageData = data {
+            let image = UIImage(data: imageData)
+            cell.setupCell(image!, width: widthvar, height: heightvar)
         }
         return cell
     }
