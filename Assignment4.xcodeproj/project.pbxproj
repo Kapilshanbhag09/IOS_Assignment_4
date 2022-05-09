@@ -20,6 +20,8 @@
 		2A0CE8002812AF94009DDD5A /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A0CE7FE2812AF94009DDD5A /* GameViewController.xib */; };
 		2A10A66F28165F8300D56B26 /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10A66D28165F8300D56B26 /* ImagesCollectionViewCell.swift */; };
 		2A10A67028165F8300D56B26 /* ImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A10A66E28165F8300D56B26 /* ImagesCollectionViewCell.xib */; };
+		2AD958BF2828E5500065380C /* GameViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD958BE2828E5500065380C /* GameViewControllerModel.swift */; };
+		2AD958C12828E6D30065380C /* ViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD958C02828E6D30065380C /* ViewControllerModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		2A0CE7FE2812AF94009DDD5A /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		2A10A66D28165F8300D56B26 /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A10A66E28165F8300D56B26 /* ImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesCollectionViewCell.xib; sourceTree = "<group>"; };
+		2AD958BE2828E5500065380C /* GameViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllerModel.swift; sourceTree = "<group>"; };
+		2AD958C02828E6D30065380C /* ViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		2A0CE7CC2812A11D009DDD5A /* Assignment4 */ = {
 			isa = PBXGroup;
 			children = (
+				2AD958BD2828E52E0065380C /* Model */,
 				2A0CE7CD2812A11D009DDD5A /* AppDelegate.swift */,
 				2A0CE7CF2812A11D009DDD5A /* SceneDelegate.swift */,
 				2A0CE7D12812A11D009DDD5A /* ViewController.swift */,
@@ -137,6 +142,15 @@
 				2A0CE7F02812A11F009DDD5A /* Assignment4UITestsLaunchTests.swift */,
 			);
 			path = Assignment4UITests;
+			sourceTree = "<group>";
+		};
+		2AD958BD2828E52E0065380C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2AD958BE2828E5500065380C /* GameViewControllerModel.swift */,
+				2AD958C02828E6D30065380C /* ViewControllerModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,8 +286,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AD958BF2828E5500065380C /* GameViewControllerModel.swift in Sources */,
 				2A0CE7FF2812AF94009DDD5A /* GameViewController.swift in Sources */,
 				2A0CE7D22812A11D009DDD5A /* ViewController.swift in Sources */,
+				2AD958C12828E6D30065380C /* ViewControllerModel.swift in Sources */,
 				2A0CE7CE2812A11D009DDD5A /* AppDelegate.swift in Sources */,
 				2A10A66F28165F8300D56B26 /* ImagesCollectionViewCell.swift in Sources */,
 				2A0CE7D02812A11D009DDD5A /* SceneDelegate.swift in Sources */,
