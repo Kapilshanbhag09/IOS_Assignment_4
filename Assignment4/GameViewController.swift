@@ -11,8 +11,6 @@ class GameViewController: UIViewController {
     @IBOutlet weak var scoreLabel:UILabel!
     @IBOutlet weak var restartButton:UIButton!
     @IBOutlet weak var displayImage: UIImageView!
-
-    //var imageNames:[String]=["1","2","3","4","5","6","7","8","9"]
     @IBOutlet weak var gameCollView: UICollectionView!
     var imagesURLArr:[String]=[]
     var imagesURLOrder:[String]=[]
@@ -21,11 +19,13 @@ class GameViewController: UIViewController {
     var imageDisplayNumber=0
     var correctScore=0
     var attemptScore=0
+    let GameViewControllerInstance=GameViewControllerModel()
+    let NetworkManagerInstance=NetworkManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagesURLOrder = GameViewControllerInstance.setImagesURLOrder(imagesURLArr: imagesURLArr)
+        visibilityArr=GameViewControllerInstance.setVisibilityArr(imagesURLArr: imagesURLArr)
         setImagesOrder()
-        // Do any additional setup after loading the view.
-        //let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         restartButton.addTarget(self,action: #selector(restartButtonClicked), for: .touchUpInside)
         
         
@@ -33,7 +33,7 @@ class GameViewController: UIViewController {
       
       
             
-        displayImage.image=getImagefromURL(link: imagesURLArr[imageDisplayNumber],num:0)
+        displayImage.image=NetworkManagerInstance.getImagefromURL(link: imagesURLOrder[imageDisplayNumber],num:0)
       
         
         //displayImage.image=UIImage(named: imagesURLArr[imageDisplayNumber])
@@ -50,39 +50,22 @@ class GameViewController: UIViewController {
         
     }
     func setImagesOrder(){
-        var count=0
-        while(count<9){
-            let randomNumber=Int.random(in:0...8)
-            var flag=0
-            for name in imagesURLOrder{
-                if(name == imagesURLArr[randomNumber]){
-                    flag=1
-                }
-            }
-            if(flag==0){
-                imagesURLOrder.append(imagesURLArr[randomNumber])
-                visibilityArr.append(false)
-                count=count+1
-            }
-        }
         for i in 0..<9{
             imagesOrderArr.append(UIImage())
         }
         for i in 0..<9{
-            print(i)
-            imagesOrderArr[i]=getImagefromURL(link: imagesURLOrder[i],num: i)
+            imagesOrderArr[i]=NetworkManagerInstance.getImagefromURL(link: imagesURLArr[i],num: i)
         }
     }
-    func getImagefromURL(link:String,num:Int)->UIImage{
-        let url = URL(string: link)
-        let data = try? Data(contentsOf: url!)
-        if let imageData = data {
-            let imaged = UIImage(data: imageData)!
-            print(num)
-            return imaged
-        }
-        return UIImage(named: "invisible")!
-    }
+//    func getImagefromURL(link:String,num:Int)->UIImage{
+//        let url = URL(string: link)
+//        let data = try? Data(contentsOf: url!)
+//        if let imageData = data {
+//            let imaged = UIImage(data: imageData)!
+//            return imaged
+//        }
+//        return UIImage(named: "invisible")!
+//    }
     @objc func restartButtonClicked(){
         dismiss(animated: true)
     }
@@ -111,11 +94,11 @@ extension GameViewController:UICollectionViewDelegate,UICollectionViewDataSource
             dismiss(animated: true)
         }
         else{
-            if(imagesURLArr[imageDisplayNumber]==imagesURLOrder[indexPath.row]){
+            if(imagesURLOrder[imageDisplayNumber] == imagesURLArr[indexPath.row]){
                 visibilityArr[indexPath.row] = true
                 gameCollView.reloadData()
                 imageDisplayNumber=imageDisplayNumber+1
-                displayImage.image = getImagefromURL(link:imagesURLArr[imageDisplayNumber],num: 0)
+                displayImage.image = NetworkManagerInstance.getImagefromURL(link:imagesURLOrder[imageDisplayNumber],num: 0)
                 //displayImage.image = imagesURLOrder[imageDisplayNumber]
                 correctScore=correctScore+1
                 gameCollView.reloadData()
