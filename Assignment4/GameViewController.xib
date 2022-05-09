@@ -23,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aoT-dn-jx2">
-                    <rect key="frame" x="0.0" y="44" width="364" height="31"/>
+                    <rect key="frame" x="0.0" y="44" width="364" height="263"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4P-qF-MOt" userLabel="replayGame">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="31"/>
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="263"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="eSF-eh-2T4"/>
                             </constraints>
@@ -34,7 +34,7 @@
                             <buttonConfiguration key="configuration" style="plain" image="arrow.2.circlepath" catalog="system"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score : 0/9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCb-kn-xBn" userLabel="scoreLable">
-                            <rect key="frame" x="50" y="0.0" width="314" height="31"/>
+                            <rect key="frame" x="50" y="0.0" width="314" height="263"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
                     </subviews>
                 </stackView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yY2-jp-2sB">
-                    <rect key="frame" x="144.5" y="85" width="125" height="125"/>
+                    <rect key="frame" x="144.5" y="317" width="125" height="125"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="AMJ-4L-d6u"/>
                         <constraint firstAttribute="height" constant="125" id="h5X-rv-4dL"/>
@@ -65,6 +65,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="aoT-dn-jx2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="0I1-KU-Wcx"/>
+                <constraint firstItem="aj3-je-Yer" firstAttribute="top" secondItem="yY2-jp-2sB" secondAttribute="bottom" constant="50" id="I9g-7W-PZu"/>
                 <constraint firstItem="yY2-jp-2sB" firstAttribute="top" secondItem="aoT-dn-jx2" secondAttribute="bottom" constant="10" id="q92-Ob-avP"/>
                 <constraint firstItem="yY2-jp-2sB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vxB-YG-OsC"/>
                 <constraint firstItem="aoT-dn-jx2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yDH-Vl-6qf"/>

@@ -12,11 +12,6 @@ class ImagesCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        //collcellimage.image?.size=CGSize(width: 150.0, height: 150.0)
-//        collcellimage.heightAnchor.constraint(equalToConstant: 150.0)
-//        collcellimage.widthAnchor.constraint(equalToConstant: 150.0)
-        
     }
 
     func setupCell(_ img: UIImage,width: CGFloat, height: CGFloat) {

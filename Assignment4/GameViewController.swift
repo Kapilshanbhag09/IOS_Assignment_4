@@ -34,20 +34,14 @@ class GameViewController: UIViewController {
       
             
         displayImage.image=NetworkManagerInstance.getImagefromURL(link: imagesURLOrder[imageDisplayNumber],num:0)
-      
-        
-        //displayImage.image=UIImage(named: imagesURLArr[imageDisplayNumber])
         gameCollView.translatesAutoresizingMaskIntoConstraints=false
         gameCollView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0).isActive = true
         gameCollView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: 0).isActive = true
-        gameCollView.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -100).isActive = true
         gameCollView.heightAnchor.constraint(equalTo: gameCollView.widthAnchor,multiplier: 1).isActive=true
     
         gameCollView.delegate=self
         gameCollView.dataSource=self
         gameCollView.register(UINib(nibName: "ImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier:"imagescollviewcell")
-
-        
     }
     func setImagesOrder(){
         for i in 0..<9{
@@ -57,15 +51,7 @@ class GameViewController: UIViewController {
             imagesOrderArr[i]=NetworkManagerInstance.getImagefromURL(link: imagesURLArr[i],num: i)
         }
     }
-//    func getImagefromURL(link:String,num:Int)->UIImage{
-//        let url = URL(string: link)
-//        let data = try? Data(contentsOf: url!)
-//        if let imageData = data {
-//            let imaged = UIImage(data: imageData)!
-//            return imaged
-//        }
-//        return UIImage(named: "invisible")!
-//    }
+    
     @objc func restartButtonClicked(){
         dismiss(animated: true)
     }
