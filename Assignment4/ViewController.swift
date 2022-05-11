@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Assignment4
-//
-//  Created by Kapil Ganesh Shanbhag on 22/04/22.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -20,7 +13,6 @@ class ViewController: UIViewController {
         override func viewDidLoad() {
         super.viewDidLoad()
         imagesArr = ViewControllerModelInstance.getImagesArr()
-            print(imagesArr)
         title="Memorise the images"
        runTimer()
         replayButton.addTarget(self, action: #selector(replayButtonClicked), for: .touchUpInside)
@@ -45,8 +37,8 @@ class ViewController: UIViewController {
         timeLabel.text="0:0\(seconds)"
         }
         timer.invalidate()
-        var timagesArr = ViewControllerModelInstance.getImagesArr()
-        imagesArr = timagesArr
+       
+        imagesArr = ViewControllerModelInstance.getImagesArr()
         collView.reloadData()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
@@ -56,7 +48,6 @@ class ViewController: UIViewController {
             replayButtonClickedVar=false
         }
         seconds -= 1
-        print(seconds)
         if(seconds/10>=1){
             timeLabel.text="0:\(seconds)"
         }
