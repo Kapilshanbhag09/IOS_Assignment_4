@@ -1,12 +1,4 @@
-//
-//  GameViewController.swift
-//  Assignment4
-//
-//  Created by Kapil Ganesh Shanbhag on 22/04/22.
-//
-
 import UIKit
-
 class GameViewController: UIViewController {
     @IBOutlet weak var scoreLabel:UILabel!
     @IBOutlet weak var restartButton:UIButton!
@@ -33,7 +25,7 @@ class GameViewController: UIViewController {
       
       
             
-        displayImage.image=NetworkManagerInstance.getImagefromURL(link: imagesURLOrder[imageDisplayNumber],num:0)
+        displayImage.image=NetworkManagerInstance.getImagefromURL(link: imagesURLOrder[imageDisplayNumber])
         gameCollView.translatesAutoresizingMaskIntoConstraints=false
         gameCollView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0).isActive = true
         gameCollView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: 0).isActive = true
@@ -48,7 +40,7 @@ class GameViewController: UIViewController {
             imagesOrderArr.append(UIImage())
         }
         for i in 0..<9{
-            imagesOrderArr[i]=NetworkManagerInstance.getImagefromURL(link: imagesURLArr[i],num: i)
+            imagesOrderArr[i]=NetworkManagerInstance.getImagefromURL(link: imagesURLArr[i])
         }
     }
     
@@ -84,7 +76,7 @@ extension GameViewController:UICollectionViewDelegate,UICollectionViewDataSource
                 visibilityArr[indexPath.row] = true
                 gameCollView.reloadData()
                 imageDisplayNumber=imageDisplayNumber+1
-                displayImage.image = NetworkManagerInstance.getImagefromURL(link:imagesURLOrder[imageDisplayNumber],num: 0)
+                displayImage.image = NetworkManagerInstance.getImagefromURL(link:imagesURLOrder[imageDisplayNumber])
                 //displayImage.image = imagesURLOrder[imageDisplayNumber]
                 correctScore=correctScore+1
                 gameCollView.reloadData()

@@ -1,13 +1,11 @@
-//
-//  ViewController.swift
-//  Assignment4
-//
-//  Created by Kapil Ganesh Shanbhag on 22/04/22.
-//
-
 import UIKit
+protocol ViewControllerDelegate{
+    func responseRecieved(imagesURLArrFromDelegate:[String])
+}
+class ViewController: UIViewController,ViewControllerDelegate {
 
-class ViewController: UIViewController {
+    
+    
     @IBOutlet weak var timeLabel:UILabel!
     @IBOutlet weak var replayButton:UIButton!
     @IBOutlet weak var loadingVar:UILabel!
@@ -24,6 +22,8 @@ class ViewController: UIViewController {
     
         override func viewDidLoad() {
         super.viewDidLoad()
+            ViewControllerModelInstance.viewControllerDelegate = self
+            
         title="Memorise the images"
             loadingVar.isHidden=false
             collView.isHidden=true
@@ -37,9 +37,11 @@ class ViewController: UIViewController {
             collView.delegate=self
             collView.dataSource=self
             collView.register(UINib(nibName: "ImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier:"imagescollviewcell")
+            //ViewControllerModelInstance.delegate=self
             setCollView()
 
     }
+
     func setCollView(){
         timeLabel.text="Loading Image"
         collView.isHidden=false
@@ -48,11 +50,10 @@ class ViewController: UIViewController {
         loadingVar.isHidden=true
         self.collView.reloadData()
         collView.isHidden=false
-        self.runTimer()
         
     }
     func runTimer(){
-        seconds=15
+        seconds=16
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
@@ -77,11 +78,19 @@ class ViewController: UIViewController {
             
         }
     }
+    func responseRecieved(imagesURLArrFromDelegate: [String]) {
+        imagesURLArr=imagesURLArrFromDelegate
+        DispatchQueue.main.async {
+            self.collView.reloadData()
+            self.runTimer()
+        }
+    }
 
     @objc func replayButtonClicked(){
         imagesURLArr = ViewControllerModelInstance.setImagesFromAPIFfunc()
         self.collView.reloadData()
         loadingVar.isHidden=false
+        timeLabel.text="Loading Image"
         runTimer()
         
     }
@@ -101,7 +110,7 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "imagescollviewcell", for: indexPath) as!ImagesCollectionViewCell
         let heightvar=(view.frame.width/3.0)-10.0
         let widthvar=(view.frame.width/3.0)-7.0
-        let image = NetworkManagerInstance.getImagefromURL(link: imagesURLArr[indexPath.row], num: 0)
+        let image = NetworkManagerInstance.getImagefromURL(link: imagesURLArr[indexPath.row])
         cell.setupCell(image, width: widthvar, height: heightvar)
         
         return cell

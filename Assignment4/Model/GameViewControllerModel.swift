@@ -1,10 +1,3 @@
-//
-//  GameViewControllerModel.swift
-//  Assignment4
-//
-//  Created by Kapil Ganesh Shanbhag on 09/05/22.
-//
-
 import Foundation
 import UIKit
 class GameViewControllerModel{

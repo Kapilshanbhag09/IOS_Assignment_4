@@ -1,10 +1,3 @@
-//
-//  ImagesCollectionViewCell.swift
-//  Assignment4
-//
-//  Created by Kapil Ganesh Shanbhag on 25/04/22.
-//
-
 import UIKit
 
 class ImagesCollectionViewCell: UICollectionViewCell {

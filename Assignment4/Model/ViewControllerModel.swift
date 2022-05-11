@@ -1,11 +1,5 @@
-//
-//  ViewControllerModel.swift
-//  Assignment4
-//
-//  Created by Kapil Ganesh Shanbhag on 09/05/22.
-//
-
 import Foundation
+import UIKit
 struct mStruct:Decodable{
     var m:String
 }
@@ -27,10 +21,10 @@ struct responseStruct:Decodable{
     var items:[itemsStruct]
 }
 class ViewControllerModel{
+    var viewControllerDelegate:ViewControllerDelegate?
     func setImagesFromAPIFfunc()->[String]{
         var imagesURLArr:[String]=[]
         let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&lang=en-us&nojsoncallback=1")!
-        let semaphore = DispatchSemaphore(value: 0)
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else { return }
             let strdate=String(data: data, encoding: .utf8)
@@ -57,16 +51,16 @@ class ViewControllerModel{
                     }
                     
                 }
+                self.viewControllerDelegate?.responseRecieved(imagesURLArrFromDelegate: imagesURLS)
                  
             }
             catch{
-                //print(error)
+                print(error)
             }
-            semaphore.signal()
+           
             
         }
         task.resume()
-        semaphore.wait()
         return imagesURLArr
     }
 }
